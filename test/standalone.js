@@ -1,6 +1,6 @@
 import test from 'ava'
 
-import PubSub from '../src/PubSub'
+import PubSub from '../dist/PubSub'
 
 test('standalone callback without data', t => {
 
