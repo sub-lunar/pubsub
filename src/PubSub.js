@@ -6,7 +6,7 @@
  *
  * Based on
  * https://davidwalsh.name/pubsub-javascript
- * under Terms of the MIT License (see LICENSE).
+ * under terms of the MIT License (see LICENSE).
  *
  * Inherit from it to add PubSub methods to your own
  * classes (recommended). Example:
