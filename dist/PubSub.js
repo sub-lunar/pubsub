@@ -74,8 +74,8 @@ module.exports = function () {
       this.topics[topic].push(listener);
     }
   }, {
-    key: "remove",
-    value: function remove(topic, listener) {
+    key: "off",
+    value: function off(topic, listener) {
 
       if (!this.topics.hasOwnProperty(topic)) {
         throw new Error("Topic " + topic + " does not exist.");

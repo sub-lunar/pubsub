@@ -17,7 +17,7 @@ test('inheritance with api wrapper', t => {
       this.on('eat', cb)
       const that = this
       return () => {
-        that.remove('eat', cb)
+        that.off('eat', cb)
       }
     }
 

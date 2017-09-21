@@ -23,7 +23,7 @@ test('standalone callback without data', t => {
   t.is(callback1Calls, 1,
        'callback should be run when something is published to its topic')
 
-  pubsub.remove('test', callback1)
+  pubsub.off('test', callback1)
 
   t.is(callback1Calls, 1,
        'callback should not be run when being unregistered')
@@ -62,7 +62,7 @@ test('standalone callback with data', t => {
   t.is(calls, 2, 'one call on publish')
   t.is(pass, obj, 'object is passed through')
 
-  pubsub.remove('test', listener)
+  pubsub.off('test', listener)
 
   t.is(calls, 2, 'no call on unregister')
 
@@ -113,7 +113,7 @@ test('standalone multi callbacks', t => {
   t.is(cb2pass, 'Orange Jam')
   t.is(cb3pass, 'Orange Jam')
 
-  pubsub.remove('toast', cb2)
+  pubsub.off('toast', cb2)
 
   t.is(cb2calls, 1)
 
@@ -127,7 +127,7 @@ test('standalone multi callbacks', t => {
   t.is(cb3pass, 'Peabnub Bubber')
 })
 
-test('nonexistent topic and #remove return value', t => {
+test('nonexistent topic and #off return value', t => {
 
   t.plan(10)
 
@@ -146,16 +146,16 @@ test('nonexistent topic and #remove return value', t => {
   t.is(pass, null)
   t.is(_void, void 0)
 
-  t.throws(pubsub.remove.bind(pubsub, 'tasty', cb))
+  t.throws(pubsub.off.bind(pubsub, 'tasty', cb))
 
-  const _true = pubsub.remove('taste', cb)
+  const _true = pubsub.off('taste', cb)
   pubsub.publish('taste')
 
   t.true(_true)
   t.is(calls, 0)
   t.is(pass, null)
 
-  const _false = pubsub.remove('taste', cb)
+  const _false = pubsub.off('taste', cb)
   pubsub.publish('taste')
 
   t.false(_false)

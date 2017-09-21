@@ -65,7 +65,7 @@ module.exports = class PubSub {
     this.topics[topic].push(listener)
   }
 
-  remove (topic, listener) {
+  off (topic, listener) {
 
     if (!this.topics.hasOwnProperty(topic)) {
       throw new Error(`Topic ${ topic } does not exist.`)
