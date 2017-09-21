@@ -1,6 +1,6 @@
 {
   "name": "@sub-lunar/pubsub",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "JavaScript PubSub class to inherit from",
   "main": "./dist/PubSub.js",
   "scripts": {
