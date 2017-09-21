@@ -53,7 +53,12 @@
 module.exports = class PubSub {
 
   constructor () {
+
     this.topics = {}
+
+    this.on = this.on.bind(this)
+    this.off = this.off.bind(this)
+    this.publish = this.publish.bind(this)
   }
 
   on (topic, listener) {

@@ -61,6 +61,10 @@ module.exports = function () {
     _classCallCheck(this, PubSub);
 
     this.topics = {};
+
+    this.on = this.on.bind(this);
+    this.off = this.off.bind(this);
+    this.publish = this.publish.bind(this);
   }
 
   _createClass(PubSub, [{
