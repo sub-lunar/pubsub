@@ -54,7 +54,7 @@ module.exports = class PubSub {
 
   constructor () {
 
-    this.topics = {}
+    this.topics = Object.create(null)
 
     this.on = this.on.bind(this)
     this.off = this.off.bind(this)
@@ -63,7 +63,7 @@ module.exports = class PubSub {
 
   on (topic, listener) {
 
-    if (!this.topics.hasOwnProperty(topic)) {
+    if (!(topic in this.topics)) {
       this.topics[topic] = []
     }
 
@@ -72,7 +72,7 @@ module.exports = class PubSub {
 
   off (topic, listener) {
 
-    if (!this.topics.hasOwnProperty(topic)) {
+    if (!(topic in this.topics)) {
       throw new Error(`Topic ${ topic } does not exist.`)
     }
 
@@ -95,7 +95,7 @@ module.exports = class PubSub {
     // if the topic is going to be added later, i.e.
     // it just doesn't have any listeners yet, but
     // they will be registered later.
-    if (!this.topics.hasOwnProperty(topic)) {
+    if (!(topic in this.topics)) {
       return
     }
 

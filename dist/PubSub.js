@@ -60,7 +60,7 @@ module.exports = function () {
   function PubSub() {
     _classCallCheck(this, PubSub);
 
-    this.topics = {};
+    this.topics = Object.create(null);
 
     this.on = this.on.bind(this);
     this.off = this.off.bind(this);
@@ -71,7 +71,7 @@ module.exports = function () {
     key: "on",
     value: function on(topic, listener) {
 
-      if (!this.topics.hasOwnProperty(topic)) {
+      if (!(topic in this.topics)) {
         this.topics[topic] = [];
       }
 
@@ -81,7 +81,7 @@ module.exports = function () {
     key: "off",
     value: function off(topic, listener) {
 
-      if (!this.topics.hasOwnProperty(topic)) {
+      if (!(topic in this.topics)) {
         throw new Error("Topic " + topic + " does not exist.");
       }
 
@@ -98,7 +98,14 @@ module.exports = function () {
     key: "publish",
     value: function publish(topic, info) {
 
-      if (!this.topics.hasOwnProperty(topic)) {
+      // this doesn't throw, but fails silently when
+      // trying to publish to a nonexistent topic.
+      // while failing silently is generally not the
+      // best idea, we cannot know at this point
+      // if the topic is going to be added later, i.e.
+      // it just doesn't have any listeners yet, but
+      // they will be registered later.
+      if (!(topic in this.topics)) {
         return;
       }
 
