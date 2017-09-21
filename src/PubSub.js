@@ -88,6 +88,13 @@ module.exports = class PubSub {
 
   publish (topic, info) {
 
+    // this doesn't throw, but fails silently when
+    // trying to publish to a nonexistent topic.
+    // while failing silently is generally not the
+    // best idea, we cannot know at this point
+    // if the topic is going to be added later, i.e.
+    // it just doesn't have any listeners yet, but
+    // they will be registered later.
     if (!this.topics.hasOwnProperty(topic)) {
       return
     }
